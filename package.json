@@ -1,7 +1,7 @@
 {
   "name": "mnemonic",
   "version": "0.0.1",
-  "description": "",
+  "description": "Implementation of Electrum's mnemonic in JavaScript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ethcodex/mnemonic.js/issues"
   },
-  "homepage": "https://github.com/ethcodex/mnemonic.js#readme"
+  "homepage": "https://github.com/ethcodex/mnemonic.js#readme",
+  "dependencies": {
+    "commander": "^2.15.1"
+  }
 }
