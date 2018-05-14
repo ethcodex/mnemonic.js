@@ -150,6 +150,10 @@ function formatTo08x(x) {
   return ("0000000" + ((x | 0) + 4294967296).toString(16)).substr(-8)
 }
 
+function formatHexMessage(x) {
+  return x.match(/0x/i) ? x.slice(2) : x
+}
+
 function getWordIndex(word) {
   let i = Words.indexOf(word)
   if (i < 0) throw `word "${word}" not exist in the list`
@@ -161,12 +165,13 @@ function getWordIndex(word) {
 // Instead, the digit represented by a word is variable, it depends on the previous word.
 
 /**
- * encode message, generate a shift number in the head
+ * encode hex message, generate a shift number in the head
  * 
  * @param {string} message 
  * @returns {string[]}
  */
 function encode(message) {
+  message = formatHexMessage(message)
   let out = []
   let shift = 0
   for (let i = 0; i < message.length / 8; i ++) {
@@ -193,8 +198,8 @@ function encode(message) {
  */
 function decode(wlist) {
   let out = ''
-  let shift = parseInt(getWordIndex(wlist.shift())) % 8
-  if (!shift) throw 'mnemonic must contains a shift number in the end'
+  let shift = getWordIndex(wlist.shift())
+  if (shift < 0 || shift > 7) throw 'mnemonic must contains a shift number in the head'
   for (let i = 0; i < wlist.length / 3; i ++) {
     [word1, word2, word3] = wlist.slice(3 * i, 3 * i + 3)
     w1 = getWordIndex(word1)
