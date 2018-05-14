@@ -1,4 +1,3 @@
-
 const assert = require('assert')
 
 const Words = [
@@ -206,6 +205,9 @@ function decode(wlist) {
   }
   return out.slice(0, out.length - shift)
 }
+
+exports.encode = encode
+exports.decode = decode
 
 if (process.argv.length < 2) {
   console.error("I need arguments: a hex string to encode, or a list of words to decode")
