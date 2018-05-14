@@ -208,19 +208,3 @@ function decode(wlist) {
 
 exports.encode = encode
 exports.decode = decode
-
-if (process.argv.length < 2) {
-  console.error("I need arguments: a hex string to encode, or a list of words to decode")
-}
-else if (process.argv.length === 3) {
-  let ret = encode(process.argv[2]).join(' ')
-  let check = decode(ret.split(' '))
-  assert.strictEqual(process.argv[2], check, 'encode -> decode check')
-  console.log(ret)
-}
-else {
-  let ret = decode(process.argv.slice(2))
-  let check = encode(ret)
-  assert.deepEqual(process.argv.slice(2), check, 'decode -> encode check')
-  console.log(ret)
-}
