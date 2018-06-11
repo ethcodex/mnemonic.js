@@ -9,7 +9,7 @@ program
   .parse(process.argv);
 
 function convert(message, from, to) {
-  return (new Buffer(message, from)).toString(to)
+  return (Buffer.from(message, from)).toString(to)
 }
   
 assert(program.args.length > 0, "you must input a seed or some mnemonic")
