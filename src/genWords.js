@@ -22,4 +22,10 @@ function shuffle(array) {
     return array;
 }
 
-module.exports = () => shuffle(Words)
+module.exports = (n) => {
+    if (n < 1) n = 1
+    for (; n > 0; n--) {
+        shuffle(Words)
+    }
+    return Words
+}

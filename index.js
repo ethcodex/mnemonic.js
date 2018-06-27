@@ -6,9 +6,9 @@ const assert = require('assert')
 const program = require('commander')
 
 program
-  .version('0.0.4')
+  .version('0.0.5')
   .option('--ascii', 'input/output is ASCII')
-  .option('--words', 'generate a new words list')
+  .option('--words <n>', 'generate a new words list, shuffle <n> times', parseInt)
   .parse(process.argv);
 
 function convert(message, from, to) {
@@ -18,7 +18,7 @@ function convert(message, from, to) {
 // generate words list
 if (program.words) {
 
-  let ret = genWords()
+  let ret = genWords(program.words)
   console.log(JSON.stringify(ret))
   process.exit(0)
 
