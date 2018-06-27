@@ -1,6 +1,31 @@
 const assert = require('assert')
+const fs = require('fs')
+const path = require('path')
 
-const Words = require('./words.json')
+/**
+ * @type {string[]}
+ */
+let Words;
+
+const wordsFileName = '.mnemonic.json'
+let localWordsPath = path.resolve('./', wordsFileName)
+let globalWordsPath = path.resolve(process.env.HOME, wordsFileName)
+
+if (fs.existsSync(localWordsPath)) {
+  Words = JSON.parse(
+    fs.readFileSync(localWordsPath).toString()
+  )
+  console.log(localWordsPath)
+}
+else if (fs.existsSync(globalWordsPath)) {
+  Words = JSON.parse(
+    fs.readFileSync(globalWordsPath).toString()
+  )
+  console.log(globalWordsPath)
+}
+else {
+  Words = require('./words.json')
+}
 
 const N = Words.length
 
