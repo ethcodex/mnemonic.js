@@ -6,7 +6,7 @@ const assert = require('assert')
 const program = require('commander')
 
 program
-  .version('0.0.2')
+  .version('0.0.4')
   .option('--ascii', 'input/output is ASCII')
   .option('--words', 'generate a new words list')
   .parse(process.argv);
