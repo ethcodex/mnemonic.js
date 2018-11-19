@@ -27,7 +27,10 @@ else {
   Words = require('./words.json')
 }
 
-const N = Words.length
+// only use the first 1626 words,
+// this value is comes from `./words.json` array.length
+const N = 1626
+assert(Words.length > N, "WordsList.length must be larger than " + N)
 
 function mod(x, y) {
   return x - y * Math.floor(x / y)
